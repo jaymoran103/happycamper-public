@@ -1,0 +1,26 @@
+{
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.project.sourcePaths": ["src/main/java", "src/test/java"],
+    "java.project.outputPath": "target/classes",
+    "java.test.config": {
+        "workingDirectory": "${workspaceFolder}"
+    },
+    "java.test.defaultConfig": "junit",
+    "java.test.config.junit": {
+        "workingDirectory": "${workspaceFolder}",
+        "vmargs": [
+            "-ea",
+            "-Djunit.jupiter.extensions.autodetection.enabled=true"
+        ]
+    },
+    "java.test.editor.enableShortcuts": true,
+    "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-22",
+            "path": "/Library/Java/JavaVirtualMachines/jdk-22.jdk/Contents/Home",
+            "default": true
+        }
+    ],
+    "java.jdt.ls.java.home": "/Library/Java/JavaVirtualMachines/jdk-22.jdk/Contents/Home",
+    "java.compile.nullAnalysis.mode": "automatic"
+}

@@ -1,0 +1,50 @@
+{
+    "version": "2.1.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch RosterApplication",
+            "request": "launch",
+            "mainClass": "com.echo.ui.RosterApplication",
+            "projectName": "happy-camper"
+        },
+        {
+            "type": "java",
+            "name": "Run JUnit Tests",
+            "request": "launch",
+            "mainClass": "org.junit.platform.console.ConsoleLauncher",
+            "args": [
+                "--scan-classpath",
+                "--include-engine=junit-jupiter"
+            ],
+            "vmArgs": [
+                "-ea",
+                "-Djunit.jupiter.extensions.autodetection.enabled=true"
+            ],
+            "projectName": "happy-camper"
+        },
+        {
+            "type": "java",
+            "name": "Debug JUnit Test",
+            "request": "launch",
+            "mainClass": "${file}",
+            "vmArgs": [
+                "-ea"
+            ]
+        },
+        {
+            "type": "java",
+            "name": "Run Test Class",
+            "request": "launch",
+            "mainClass": "org.junit.platform.console.ConsoleLauncher",
+            "args": [
+                "--select-class=${fileBasenameNoExtension}",
+                "--details=tree"
+            ],
+            "vmArgs": [
+                "-ea",
+                "-Djunit.jupiter.extensions.autodetection.enabled=true"
+            ]
+        }
+    ]
+}

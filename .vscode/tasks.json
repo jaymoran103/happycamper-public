@@ -1,0 +1,23 @@
+{
+    "version": "2.1.0",
+    "tasks": [
+        {
+            "label": "Build with Maven",
+            "type": "shell",
+            "command": "mvn clean install",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Test with Maven",
+            "type": "shell",
+            "command": "mvn test",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        }
+    ]
+}
