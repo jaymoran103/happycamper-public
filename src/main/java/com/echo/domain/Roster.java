@@ -1,8 +1,6 @@
 package com.echo.domain;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -10,11 +8,11 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
 import com.echo.logging.RosterException;
+import com.echo.service.ImportUtils;
 
 /**
  * Base class for all roster types in the system.
@@ -403,8 +401,7 @@ public class Roster {
      * @throws RosterException if there are issues with the file format, missing headers, or I/O errors
      */
     public void loadFromCSV(File file) throws RosterException {
-        try (BufferedReader reader = new BufferedReader(new FileReader(file));
-             CSVParser parser = new CSVParser(reader, CSVFormat.DEFAULT.builder().setHeader().build())) {
+        try (CSVParser parser = ImportUtils.createSafeParser(file);) {
 
             // Get headers from parser
             Map<String, Integer> parsedHeaders = parser.getHeaderMap();

@@ -1,20 +1,17 @@
 package com.echo.validation;
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
 import java.util.ArrayList;
-
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.HashSet;
 
-import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
 import com.echo.logging.RosterException;
+import com.echo.service.ImportUtils;
 
 
 /**
@@ -23,6 +20,7 @@ import com.echo.logging.RosterException;
  * Provides a comprehensive set of validation methods for checking files before they are processed by the application. 
  * Uses a validation chain pattern that allows multiple validation steps to be combined, terminating early if a step fails.
  *
+ * FUTURE - rework validation chain approach so that files themselves are only parsed once?
  */
 public class FileValidator {
 
@@ -161,8 +159,7 @@ public class FileValidator {
             return new ValidationResult(file, null);
         }
 
-        try (Reader reader = new FileReader(file);
-             CSVParser parser = CSVParser.parse(reader, CSVFormat.DEFAULT.builder().setHeader().build())) {
+        try (CSVParser parser = ImportUtils.createSafeParser(file)) {
 
             Set<String> fileHeaders = new HashSet<>(parser.getHeaderNames());
             List<String> missingHeaders = new ArrayList<>();
@@ -207,8 +204,7 @@ public class FileValidator {
      * @return ValidationResult with exception if check fails
      */
     private static ValidationResult validateRowLengths(File file) {
-        try (Reader reader = new FileReader(file);
-             CSVParser parser = CSVParser.parse(reader, CSVFormat.DEFAULT.builder().setHeader().build())) {
+        try (CSVParser parser = ImportUtils.createSafeParser(file)) {
 
             int headerCount = parser.getHeaderNames().size();
             int rowNumber = 1; // Start at 1 because header is row 0
@@ -267,8 +263,7 @@ public class FileValidator {
      * @return ValidationResult with exception if check fails
      */
     private static ValidationResult validateHasContent(File file) {
-        try (Reader reader = new FileReader(file);
-             CSVParser parser = CSVParser.parse(reader, CSVFormat.DEFAULT.builder().setHeader().build())) {
+        try (CSVParser parser = ImportUtils.createSafeParser(file)) {
 
             if (parser.getHeaderNames().isEmpty()) {
                 return new ValidationResult(file,

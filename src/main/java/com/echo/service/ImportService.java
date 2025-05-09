@@ -1,15 +1,12 @@
 package com.echo.service;
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
@@ -45,8 +42,7 @@ public class ImportService {
 
         List<Map<String, String>> result = new ArrayList<>();
 
-        try (Reader reader = new FileReader(file);
-             CSVParser parser = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(reader)) {
+        try (CSVParser parser = ImportUtils.createSafeParser(file);) {
 
             for (CSVRecord record : parser) {
                 Map<String, String> row = new HashMap<>();
@@ -55,31 +51,12 @@ public class ImportService {
                 }
                 result.add(row);
             }
+
         } catch (IOException e) {
             throw RosterException.create_normalWrapper("ImportService.importCSV: IOException",e);
         }
 
         return result;
-    }
-
-    /**
-     * Extracts column headers from a CSV file.
-     * This method reads only the first row of the file to get the headers.
-     *
-     * @param file The CSV file to extract headers from
-     * @return List of header names in the order they appear in the file
-     * @throws RosterException if the file is invalid or an error occurs during reading
-     */
-    public List<String> extractHeaders(File file) throws RosterException {
-        // Validate the file before extracting headers
-        FileValidator.validateFile(file);
-
-        try (Reader reader = new FileReader(file);
-             CSVParser parser = CSVParser.parse(reader, CSVFormat.DEFAULT.withFirstRecordAsHeader())) {
-            return new ArrayList<>(parser.getHeaderNames());
-        } catch (IOException e) {
-            throw RosterException.create_normalWrapper("ImportService.extractHeaders: IOException", e);
-        }
     }
 
     /**

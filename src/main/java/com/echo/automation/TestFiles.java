@@ -31,6 +31,8 @@ public enum TestFiles {
 
     BASIC_ACTIVITIES("basicRosters", "singleCabinActivities.csv"),
     BASIC_CAMPERS_BADNAMES("basicRosters", "singleCabinCampers_badNames.csv"),
+    BADHEADER_CAMPERS("basicRosters", "buggyheadercharacters_campers.csv"),
+
 
     // Demo roster files
     DEMO_S5_CAMPERS("demoRosters", "Campers_S5_demo.csv"),

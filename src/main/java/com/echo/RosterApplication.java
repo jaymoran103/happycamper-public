@@ -18,6 +18,7 @@ public class RosterApplication {
     public static String NAME_VERSION = NAME+" "+VERSION;
 
     public static boolean WAIT_TO_AUTOMATE = false;
+    public static boolean PRINT_LOGGED_ERRORS = true;
 
     private static MainWindow mainWindowInstance;
 

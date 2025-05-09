@@ -2,6 +2,8 @@ package com.echo.logging;
 
 import java.util.List;
 
+import com.echo.RosterApplication;
+
 /**
  * Exception class for roster-related errors with user-friendly information.
  *
@@ -186,6 +188,10 @@ public class RosterException extends Exception {
      */
     public static RosterException create_normalWrapper(String summary, Exception e) {
 
+        //Prints stack trace if boolean is true in RosterApplication. 
+        //Allows developer to toggle printing for all unanticipated exception, while still handling elegantly by wrapping as RosterExceptions
+        conditionalPrint(e);
+
         String basicExplanation = "An unexpected error occurred while processing the given data.";
         String detailedExplanation = "If this keeps happening, try using a different file, or let Jay know.";
         StackTraceElement[] stackTrace = e.getStackTrace();
@@ -260,5 +266,18 @@ public class RosterException extends Exception {
      */
     public boolean isWrapper(){
         return isWrapper;
+    }
+
+
+    /**
+     * Prints stack trace if boolean is true in RosterApplication. 
+     * Allows developer to toggle printing for all unanticipated exception, 
+     * while still handling elegantly by wrapping as RosterExceptions
+     * @param e
+     */
+    public static void conditionalPrint(Exception e){
+        if (RosterApplication.PRINT_LOGGED_ERRORS){
+            e.printStackTrace();
+        }
     }
 }

@@ -67,7 +67,8 @@ public enum TestPreset {
             "Bad name formats for validation testing"),
 //     VALIDATION_ALL_ERRORS(205, TestFiles.MINI_CAMPERS_S5_ALL_ERRORS, TestFiles.MINI_ACTIVITIES_S5_ALL_ERRORS, 5,
 //             "Multiple errors for validation testing")
-
+    PARSING_BADHEADERCHARACTERS(301,TestFiles.BADHEADER_CAMPERS,TestFiles.BASIC_ACTIVITIES,5,
+            "Like real CM rosters, has characters in the header that break the parser.");
 
     ;
 
