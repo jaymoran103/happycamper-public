@@ -3,6 +3,7 @@ package com.echo.ui.elements;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.net.URL;
 
 import javax.swing.ImageIcon;
 
@@ -94,7 +95,12 @@ public class HelpButton extends HoverButton{
      */
     private void setIconResource(){
         try {
-            fullIcon = new ImageIcon(getClass().getClassLoader().getResource(IMAGE_PATH));
+            URL resource = getClass().getClassLoader().getResource(IMAGE_PATH);
+            if (resource != null) {
+                fullIcon = new ImageIcon(resource);
+            } else {
+                System.err.println("Failed to load image: " + IMAGE_PATH);
+            }        
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }

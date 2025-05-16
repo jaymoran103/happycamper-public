@@ -196,7 +196,7 @@ public class RosterException extends Exception {
      */
     public static RosterException create_normalWrapper(String summary, Exception e) {
 
-        //Prints stack trace if boolean is true in RosterApplication. 
+        //Prints stack trace if boolean is true in HappyCamper. 
         //Allows developer to toggle printing for all unanticipated exception, while still handling elegantly by wrapping as RosterExceptions
         conditionalPrint(e);
 
@@ -278,7 +278,7 @@ public class RosterException extends Exception {
 
 
     /**
-     * Prints stack trace if boolean is true in RosterApplication. 
+     * Prints stack trace if boolean is true in HappyCamper. 
      * Allows developer to toggle printing for all unanticipated exception, 
      * while still handling elegantly by wrapping as RosterExceptions
      * @param e

@@ -62,7 +62,7 @@ HappyCamper follows a clean architecture pattern with clear separation of concer
 - Settings management for import/export
 
 ### UI Layer (`com.echo.ui`)
-- Main application: `RosterApplication`
+- Main application: `HappyCamper`
 - Main window: `MainWindow`
 - Components: `RosterTable`
 - Dialogs: `ImportDialog`, `ExportDialog`
@@ -91,7 +91,7 @@ mvn clean package
 
 ### Running the Application
 ```bash
-java -jar target/roster-manager-2.0-SNAPSHOT.jar
+java -jar target/roster-manager-2.2-SNAPSHOT.jar
 ```
 
 Or use the provided script:
@@ -157,7 +157,7 @@ redo/
 │   │   │           ├── service/       # Services for file operations
 │   │   │           ├── ui/            # User interface components
 │   │   │           ├── validation/    # Data validation utilities
-│   │   │           └── RosterApplication.java  # Main entry point
+│   │   │           └── HappyCamper.java  # Main entry point
 │   │   └── resources/                 # Application resources
 │   └── test/
 │       └── java/                      # Test classes

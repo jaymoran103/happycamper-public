@@ -68,7 +68,7 @@ public class MainWindow extends JFrame {
         // Create welcome panel
         JPanel welcomePanel = new JPanel(new BorderLayout());
         JLabel welcomeLabel = new JLabel("<html><div style='text-align: center;'><h2>Welcome to "+HappyCamper.NAME_VERSION+"</h2>" +
-                "<p>Click 'Import' to get started, or click 'Help' for more instructions for</p></div></html>");
+                "<p>Click 'Import' to get started, or click 'Help' for more instructions.</p></div></html>");
         welcomeLabel.setHorizontalAlignment(JLabel.CENTER);
         welcomePanel.add(welcomeLabel, BorderLayout.CENTER);
 
